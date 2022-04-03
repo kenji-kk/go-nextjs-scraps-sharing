@@ -1,13 +1,24 @@
 package main
 
 import (
+	"fmt"
+	"hobby/db"
+	"hobby/handler"
+	"log"
 	"time"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
+func init() {
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
+	db.DbConnect()
+}
+
 func main() {
+        fmt.Println("起動")
+        
 	r := gin.Default()
 		r.Use(cors.New(cors.Config{
 			// 許可したいHTTPメソッドの一覧
@@ -39,4 +50,6 @@ func main() {
 			// https://godoc.org/github.com/gin-contrib/cors#Config の中のコメントに詳細あり
 			MaxAge: 24 * time.Hour,
 	}))
+        
+        r.POST("/signup", handler.Signup)
 }
