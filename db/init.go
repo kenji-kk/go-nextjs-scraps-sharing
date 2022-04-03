@@ -20,11 +20,14 @@ func DbConnect() {
 	fmt.Println("db接続完了")
 
 	cmdU := `CREATE TABLE IF NOT EXISTS users (
-		id INT PRIMARY KEY AUTO_INCREMENT,
-		username VARCHAR(255),
-		email VARCHAR(255),
-		hashedpassword LONGBLOB,
-		salt LONGBLOB)`
+		id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+		username VARCHAR(255) NOT NULL,
+		email VARCHAR(255) UNIQUE,
+		hashedpassword LONGBLOB NOT NULL,
+		salt LONGBLOB) NOT NULL
+		created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+		`
 
 	_, err = Db.Exec(cmdU)
 	count := 0
