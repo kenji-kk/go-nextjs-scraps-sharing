@@ -37,3 +37,24 @@ func Signup(ctx *gin.Context) {
   })
 }
 
+func Signin(ctx *gin.Context) {
+	user := new(db.User)
+	if err := ctx.Bind(user); err != nil {
+		ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"err": err.Error()})
+		return
+	}
+
+	signinUser, err := user.Signin()
+	if err != nil {
+		ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"err": err.Error()})
+		return
+	}
+
+	ctx.JSON(http.StatusOK, gin.H{
+		"msg": "Signed in successfully.",
+		"jwt": db.GenerateJWT(&signinUser),
+		"user": signinUser,
+	})
+	
+}
+
