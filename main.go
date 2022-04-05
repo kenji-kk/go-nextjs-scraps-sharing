@@ -52,4 +52,7 @@ func main() {
 	}))
         
         r.POST("/signup", handler.Signup)
+        r.POST("/signin", handler.Signin)
+
+        r.Run(":8080")
 }
