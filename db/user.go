@@ -74,6 +74,28 @@ func (u *User)AddUser() (User, error){
 	return user, err
 }
 
+func (u *User) Signin() (User, error) {
+	cmd := `select id, username, email, hashedpassword, salt from users
+	where email = ?`
+	user := User{}
+	err := Db.QueryRow(cmd, u.Email).Scan(
+		&user.Id,
+		&user.UserName,
+		&user.Email,
+		&user.HashedPassword,
+		&user.Salt,)
+	if err != nil {
+		fmt.Printf("スキャン時にエラーが起きました: %v\n", err)
+		return User{}, err
+	}
+	if err := bcrypt.CompareHashAndPassword(user.HashedPassword, append([]byte(u.Password), user.Salt...)); err != nil {
+		fmt.Printf("パスワードが一致しません: %v\n", err)
+		return User{}, err
+	}
+	return user, err
+}
+
+
 func FetchUser(id int64) (User, error) {
 	cmd := `select id, username, email, hashedpassword, salt from users
 	where id = ?`
