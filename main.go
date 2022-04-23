@@ -18,6 +18,7 @@ func init() {
 
 func main() {
         fmt.Println("起動")
+        db.JwtSetup()
         
 	r := gin.Default()
 		r.Use(cors.New(cors.Config{
