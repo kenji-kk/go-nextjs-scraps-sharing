@@ -1,9 +1,9 @@
 package main
 
 import (
+	"app/db"
+	"app/handler"
 	"fmt"
-	"hobby/db"
-	"hobby/handler"
 	"log"
 	"time"
 

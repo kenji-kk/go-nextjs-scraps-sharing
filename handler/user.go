@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	"hobby/db"
+	"app/db"
 
 	"github.com/gin-gonic/gin"
 )
