@@ -10,9 +10,9 @@ import (
 
 type User struct {
 	Id        int 		 
-	UserName  string 
-	Password  string
-	Email     string
+	UserName  string `binding:"required,min=5,max=30"`
+	Password  string `binding:"required,min=6,max=30"`
+	Email     string `binding:"required,min=5,max=100"`
 	CreatedAt time.Time 
 	UpdatedAt time.Time 
 	Salt      []byte `json:"-"`
