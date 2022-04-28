@@ -1,9 +1,10 @@
 package main
 
 import (
+	"app/db"
+	"app/handler"
+	"app/jwt"
 	"fmt"
-	"hobby/db"
-	"hobby/handler"
 	"log"
 	"time"
 
@@ -14,11 +15,11 @@ import (
 func init() {
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	db.DbConnect()
+	jwt.JwtSetup()
 }
 
 func main() {
         fmt.Println("起動")
-        db.JwtSetup()
         
 	r := gin.Default()
 		r.Use(cors.New(cors.Config{
