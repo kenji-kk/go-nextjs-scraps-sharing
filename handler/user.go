@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"app/db"
+	"app/jwt"
 
 	"github.com/gin-gonic/gin"
 )
@@ -32,7 +33,7 @@ func Signup(ctx *gin.Context) {
 
   ctx.JSON(http.StatusOK, gin.H{
     "msg": "Signed up successfully.",
-    "jwt": db.GenerateJWT(&AddedUser),
+    "jwt": jwt.GenerateJWT(&AddedUser),
 		"user": AddedUser,
   })
 }
@@ -52,7 +53,7 @@ func Signin(ctx *gin.Context) {
 
 	ctx.JSON(http.StatusOK, gin.H{
 		"msg": "Signed in successfully.",
-		"jwt": db.GenerateJWT(&signinUser),
+		"jwt": jwt.GenerateJWT(&signinUser),
 		"user": signinUser,
 	})
 	
