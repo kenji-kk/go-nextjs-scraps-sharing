@@ -19,6 +19,17 @@ type User struct {
 	HashedPassword []byte `json:"-"`
 }
 
+type SigninUser struct {
+	Id        int 		 
+	UserName  string 
+	Password  string `binding:"required,min=6,max=30"`
+	Email     string `binding:"required,min=5,max=100"`
+	CreatedAt time.Time 
+	UpdatedAt time.Time 
+	Salt      []byte `json:"-"`
+	HashedPassword []byte `json:"-"`
+}
+
 
 
 
@@ -63,7 +74,7 @@ func (u *User)AddUser() (User, error){
 	return user, err
 }
 
-func (u *User) Signin() (User, error) {
+func (u *SigninUser) Signin() (User, error) {
 	cmd := `select id, username, email, hashedpassword, salt from users
 	where email = ?`
 	user := User{}

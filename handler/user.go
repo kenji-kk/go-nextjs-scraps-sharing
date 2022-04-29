@@ -39,7 +39,7 @@ func Signup(ctx *gin.Context) {
 }
 
 func Signin(ctx *gin.Context) {
-	user := new(db.User)
+	user := new(db.SigninUser)
 	if err := ctx.Bind(user); err != nil {
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"err": err.Error()})
 		return
