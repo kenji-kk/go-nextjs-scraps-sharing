@@ -3,12 +3,12 @@ Next.jsとGoAPIでアプリを作るためのテンプレート。認証機能�
 
 ## 構築コマンド
 ### ・バックエンドAPI (このリポジトリ)
-1. `git clone git@github.com:kenji-kk/go-nextjs-template`
-2. `cd go-nextjs-template`
+1. `git clone git@github.com:kenji-kk/go-nextjs-scraps-sharing`
+2. `cd go-nextjs-scraps-sharing`
 3. `docker-compose up`
-### ・フロントエンド ( https://github.com/kenji-kk/nextjs-go-template )
-1. `git clone git@github.com:kenji-kk/nextjs-go-template`
-2. `cd nextjs-go-template`
+### ・フロントエンド ( https://github.com/kenji-kk/nextjs-go-scraps-sharing )
+1. `git clone git@github.com:kenji-kk/nextjs-go-scraps-sharing`
+2. `cd nextjs-go-scraps-sharing`
 3. `touch .env`
 4. `echo NEXT_PUBLIC_HOST="http://localhost" > .env` *注意：GCEなどクラウドコンピューティングを使用の場合はlocalhostではなくそちらのipアドレスを指定
 5. `docker-compose up`
